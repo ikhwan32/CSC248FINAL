@@ -1,0 +1,3 @@
+1;Mazda;X50;2021;Red;tx120;2;120.0;
+2;Proton;GTR;2021;Yellow;Y1210;8;8102.0;
+3;Perodua;Kancil GTR RX25;2021;Yellow;FTA2130;2;180.0;
