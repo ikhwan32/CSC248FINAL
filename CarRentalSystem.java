@@ -2,7 +2,7 @@
 /**
  *
  * @author myPC
- * ikhwan kacak
+ * ikhwan kocak
  */
 
 import java.util.*;
@@ -11,6 +11,8 @@ import java.io.*;
 
 public class CarRentalSystem {
     
+
+
      public static void clrscr() throws Exception
 	{
 		Scanner sc = new Scanner(System.in);
@@ -49,10 +51,12 @@ public class CarRentalSystem {
 	{
 		System.out.println("\t\t\tRENTAL MANAGEMENT SYSTEM");
 		System.out.println("\t\t\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-		System.out.println("\n\t\t\t1. Book Car");
-		System.out.println("\t\t\t2. Sort Car By Demand");
-        System.out.println("\t\t\t3. Car Availability");
-        System.out.println("\t\t\t4. Return to Main Menu");
+		System.out.println("\n\t\t\t1. Rent Car");
+		System.out.println("\t\t\t2. Return Car");
+        System.out.println("\t\t\t3. Add Customer to Queue");
+        System.out.println("\t\t\t4. Remove Customer from Queue");
+        System.out.println("\t\t\t5. View Rented and Available Car");
+        System.out.println("\t\t\t6. Return to Main Menu");
 		System.out.print("\n\t\t\tPlease input your choice >> ");
         int response = input.nextInt();
         return response;
@@ -91,10 +95,15 @@ public class CarRentalSystem {
                     clrscr();
                 }
                 else if (submenu1 == 2) {       //search car
-                    
+                    System.out.println("\t\t\tSEARCH CAR RECORD");
+		            System.out.println("\t\t\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+
+                    System.out.print("\t\t\tPlease enter Car ID >>> ");
+                    int carID = input.nextInt();
+                    searchCar(carInfo, carID);
                 }
                 else if (submenu1 == 3) {       //delete car
- 
+
                 }
 
                 else if (submenu1 == 4) {       //list car
@@ -110,27 +119,48 @@ public class CarRentalSystem {
             
             else if(choice ==2) {  //rent car menu
                 int submenu2 = rentmenu(input);
+                if (submenu2 == 1) {                //rent car (based on customer queue)
+                                                    //priority given to first customer to enter the queue
+
+                }
+                else if (submenu2 == 2) {           //return car
+
+                }
+                else if (submenu2 == 3) {           //add customer to queue to rent car
+                    
+                }
+                else if (submenu2 == 4) {           //remove customer from queue
+                    
+                }
+                else if (submenu2 == 5) {           //view rented and available car
+                    
+                }
+                else  {                             //exit back to main menu
+                    input.nextLine();
+	                System.out.println("\n\n\n\t\t\tReturning to Main Menu!\n\n\n");
+	                clrscr();
+                }
             }
             
             else if(choice ==3) {  //customer menu
                 int submenu3 = customermenu(input);
 
-                if (submenu3 == 1) {
+                if (submenu3 == 1) {                //add new customer
                     customerList custList = newCustomer(input);
                     writeNewCustomer(custList);
                     System.out.print("\n\t\t\t<< Data Stored Successfully >> ");
                     clrscr();
                 }
-                else if (submenu3 == 2) {
+                else if (submenu3 == 2) {           //search customer
 
                 }
-                else if (submenu3 == 3) {
+                else if (submenu3 == 3) {           //delete customer record
                     
                 }
-                else if (submenu3 == 4) {
+                else if (submenu3 == 4) {           //list customer 
                     
                 }
-                else  {
+                else  {                             //exit back to main menu
                     input.nextLine();
 	                System.out.println("\n\n\n\t\t\tReturning to Main Menu!\n\n\n");
 	                clrscr();
@@ -160,7 +190,7 @@ public class CarRentalSystem {
         
     }
     
-    static carList newCar(Scanner in) {
+    static carList newCar(Scanner in) {                 //register new car into array
         
         Scanner input = new Scanner(System.in);
 
@@ -189,7 +219,7 @@ public class CarRentalSystem {
     
     }
 
-    static void writeNewCar(carList data) {
+    static void writeNewCar(carList data) {             //write new car into file
         try(PrintWriter writeCar = new PrintWriter(new BufferedWriter(new FileWriter("carInfo.txt", true)))) {
             writeCar.println(data.getCarID()+";"+data.getCarManufacturer()+";"+data.getCarName()+";"+data.getCarYear()+";"+data.getCarColor()+";"+data.getCarPlate()+";"+data.getCarCapacity()+";"+data.getCarRent()+";");
             writeCar.close();
@@ -205,15 +235,30 @@ public class CarRentalSystem {
         } 
     }
 
-    static void deleteCar() {
+    static void deleteCar() {                           //delete car from file and linkedlist
 
     }
     
-    static void searchCar() {
-        
+    static void searchCar(LinkedList searchCar, int searchCarID) {                           //search car from linkedlist
+        String out = ""; carList c;
+        if(searchCar == null)
+            out+="List is empty";
+        else {
+            Object data = searchCar.getFirst();
+            while (data!=null) {
+                c = (carList) data;
+                if (c.getCarID() == searchCarID) {
+                    out+= c.toString();
+                 
+                }
+                
+                data = searchCar.getNext();
+            }
+        }
+        System.out.println(out);
     }
 
-    static LinkedList getCarInfo() {
+    static LinkedList getCarInfo() {                    //write car info from file into linkedlist
         LinkedList list = new LinkedList();
         BufferedReader in;
        String read = null;
@@ -250,7 +295,7 @@ public class CarRentalSystem {
         return list;
     }
 
-    public static String PrintCar(LinkedList List) {
+    public static String PrintCar(LinkedList List) {    //toString method for carInfo linkedlist
         String out = ""; carList c;
         if(List == null)
             out+="List is empty";
@@ -265,7 +310,7 @@ public class CarRentalSystem {
         return out;
     }
 
-    static customerList newCustomer(Scanner in) {
+    static customerList newCustomer(Scanner in) {       //new customer menu and register into array
         Scanner input = new Scanner(System.in);
 
         System.out.println("\t\t\tNEW CUSTOMER REGISTRATION");
@@ -282,7 +327,7 @@ public class CarRentalSystem {
         return data;
     }
 
-    static void writeNewCustomer(customerList data) {
+    static void writeNewCustomer(customerList data) {   //write new customer into file
         try(PrintWriter writeCustomer = new PrintWriter(new BufferedWriter(new FileWriter("custInfo.txt", true)))) {
             writeCustomer.println(data.getCustName()+";"+data.getCustIC()+";"+data.getCustPhone()+";");
             writeCustomer.close();
@@ -298,7 +343,7 @@ public class CarRentalSystem {
         } 
     }
 
-    static LinkedList getCustInfo() {
+    static LinkedList getCustInfo() {                   //read customer from file into linkedlist
         LinkedList list = new LinkedList();
         BufferedReader in;
        String read = null;
