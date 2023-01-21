@@ -28,7 +28,7 @@ public class customerList {
     public String getCustPhone(){return custPhone;}
     
     public String toString(){
-        return "\n\t\t\tCustomer's Name = " + custName +
+        return "\n\n\t\t\tCustomer's Name = " + custName +
              "\n\t\t\tCustomer's ID = " + custIC +
              "\n\t\t\tCustomer's Phone = " + custPhone ;
     }   

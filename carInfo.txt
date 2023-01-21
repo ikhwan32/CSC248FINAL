@@ -1,4 +1,3 @@
-1;Mazda;X50;2021;Red;tx120;2;120.0;
-2;Proton;GTR;2021;Yellow;Y1210;8;8102.0;
-3;Perodua;Kancil GTR RX25;2021;Yellow;FTA2130;2;180.0;
-23234;mazda;ilHAM;2002;RED;89372HF;4;1000.0;
+1;Mazda;RX8;2005;Silver;YUQ123;2;150.0;false;
+2;Proton;RX8;2005;Silver;YUQ123;2;150.0;true;
+3;Nisang;RX8;2005;Silver;YUQ123;2;150.0;false;
