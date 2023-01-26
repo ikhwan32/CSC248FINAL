@@ -13,9 +13,10 @@ public class carList {
     private int carCapacity;
     private double carRentPrice;
     private boolean carAvailability;
+    private int carDemand;
     
     //normal constructor
-    public carList(int cID, String cM, String cN, int cY, String cC, String cP, int c, double cR, boolean cA) {
+    public carList(int cID, String cM, String cN, int cY, String cC, String cP, int c, double cR, boolean cA, int cD) {
         carID = cID;
         carManufacturer = cM;
         carName = cN;
@@ -25,10 +26,11 @@ public class carList {
         carCapacity = c;
         carRentPrice = cR;
         carAvailability = cA;
+        carDemand = cD;
     }
     
     //mutator
-    public void setCarList(int cID, String cM, String cN, int cY, String cC, String cP, int c, double cR, boolean cA) {
+    public void setCarList(int cID, String cM, String cN, int cY, String cC, String cP, int c, double cR, boolean cA, int cD) {
         carID = cID;
         carManufacturer = cM;
         carName = cN;
@@ -38,6 +40,15 @@ public class carList {
         carCapacity = c;
         carRentPrice = cR;
         carAvailability = cA;
+        carDemand = cD;
+    }
+
+    public void setCarAvailibility(boolean cA) {
+        carAvailability = cA;
+    }
+
+    public void setCarDemand(int cD) {
+        carDemand = cD;
     }
     
     //accessor
@@ -50,6 +61,7 @@ public class carList {
     public int getCarCapacity(){return carCapacity;}
     public double getCarRent(){return carRentPrice;}
     public boolean getCarAvailibility(){return carAvailability;}
+    public int getCarDemand(){return carDemand;}
     
     public String toString(){
         return "\n\n\t\t\tCar ID = " + carID +
@@ -59,7 +71,8 @@ public class carList {
              "\n\t\t\tCar Color = " + carColor +
              "\n\t\t\tCar Plate = " + carPlate +
              "\n\t\t\tCar Capacity = " + carCapacity +
-             "\n\t\t\tCar Rent = " + carRentPrice;
+             "\n\t\t\tCar Rent = " + carRentPrice +
+             "\n\t\t\tCar Demand = " + carDemand;
     }   
     
 }

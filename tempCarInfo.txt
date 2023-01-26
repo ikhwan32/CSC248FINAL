@@ -1,0 +1,2 @@
+1;Mazda;RX8;2005;Silver;YUQ123;2;150.0;true;0;
+3;Nisang;RX8;2005;Silver;YUQ123;2;150.0;true;0;
